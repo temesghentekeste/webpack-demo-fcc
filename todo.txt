@@ -20,5 +20,12 @@
 }
 
 Note: By default npm start looks for a file index.js inside the src folder to run otherwise it will cause an error.
+****************************************************************************
 
+2. Imports and Exports and Moduels
 
+Webpack now bundling all our app code
+
+- We use import/export to indicate dependencies
+- Webpack makes sure everything loads in the correct order
+- We can remove all our additional script tags in index.html

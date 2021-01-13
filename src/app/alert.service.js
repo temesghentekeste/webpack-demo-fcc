@@ -1,4 +1,4 @@
-class AlertService {
+export class AlertService {
   constructor() {
     this.errorBox = document.getElementById("error");
   }
