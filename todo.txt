@@ -71,3 +71,75 @@ module.exports = {
 
 By default webpack runs in production mode.
 To remove the eval stuff we can say: devtool: "none" or devtool: false
+****************************************************************************
+
+4. Webpack Loaders, CSS & SASS
+
+Add first loaders to handle css
+
+- Installed style-loader and css-loader: 
+- Configured webpack.config to use both loaders on css files
+- Remember the order we use them in webpack.config matters
+
+  > npm install --save-dev style-loader css-loader
+  webpack.config.js
+  const path = require('path');
+
+module.exports = {
+  mode: 'development',
+  entry: path.resolve(__dirname, './src/index.js'),
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
+      }
+    ]
+  },
+  watch: true,
+};
+
+css-loader takes your CSS and converts it to JavaScript code and style-loader takes your code and injects it to the DOM by injecting a <style></style> tag
+
+***********************************************************************
+5. Add Sass loader, override bootstrap colors
+
+- Changed our main.css to main.scss
+- Installed bootstrap locally so we can tweak it
+- Installed sass-loader and node-sass
+- Updated webpack.config file to include a .scss rule
+
+
+npm i --save-dev bootstrap
+npm i --save-dev sass-loader node-sass
+
+
+const path = require('path');
+
+webpack.config.js
+
+module.exports = {
+  mode: 'development',
+  entry: path.resolve(__dirname, './src/index.js'),
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader', //3. Inject styles into DOM
+          'css-loader', //2. Turns css into commonjs
+          'sass-loader', //1. Turns sass into css
+        ],
+      },
+    ],
+  },
+  watch: true,
+};
