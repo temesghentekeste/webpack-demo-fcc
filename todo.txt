@@ -29,3 +29,45 @@ Webpack now bundling all our app code
 - We use import/export to indicate dependencies
 - Webpack makes sure everything loads in the correct order
 - We can remove all our additional script tags in index.html
+***************************************************************************
+
+3. Add webpack config file
+
+- Created webpack.config.js
+- Added some basic configuration
+- Modified package.json, so that webpack uses our config file
+
+package.json
+{
+  "name": "23-2-webpack-fcc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack  --config webpack.config.js",
+  },
+  "keywords": [],
+  "author": "Temesghen Tekeste",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.13.0",
+    "webpack-cli": "^4.3.1"
+  }
+}
+
+
+webpack.config.js
+const path = require('path');
+
+module.exports = {
+  mode: 'production',
+  entry: path.resolve(__dirname, './src/index.js'),
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  watch: true,
+};
+
+By default webpack runs in production mode.
+To remove the eval stuff we can say: devtool: "none" or devtool: false
