@@ -143,3 +143,14 @@ module.exports = {
   },
   watch: true,
 };
+
+***********************************************************************
+6. Cache busting and plugins
+It is about how to prevent brower from caching assets when we don't want them to be cached.
+
+Adding a content hash into the file name can prevent such incident (undesired caching)
+
+main.0cf478770319e01e7128
+main.0cf478770319e01e7128.js
+
+
